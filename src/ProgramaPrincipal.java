@@ -10,8 +10,9 @@ public class ProgramaPrincipal {
 
     public static void main(String[] args) {
 
-        Usuario usuario = new Usuario(0, "Pedro", "pedrin@gmail.com", "123456");
+        Usuario usuario = new Usuario(0, "Let", "let@gmail.com", "098765");
         List<Usuario> usuariosList;
+        int id = 1;
 
         Connection conexao = ConexaoMysql.getConexao();
         UsuarioDao usuarioDao = new UsuarioDao(conexao);
@@ -19,8 +20,10 @@ public class ProgramaPrincipal {
         System.out.println(ConexaoMysql.getStatus());
 
         if (Objects.nonNull(conexao)) {
-           Usuario user = usuarioDao.getUsuarioById(1);
-           System.out.println(user);
+            Usuario user = usuarioDao.criarUsuario(usuario);
+            System.out.println(user);
+
+            usuarioDao.deletarUsuario(user.getId());
         }
     }
 }

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UsuarioDao {
 
@@ -20,7 +21,7 @@ public class UsuarioDao {
         this.conexao = conexao;
     }
 
-    public void criarUsuario(Usuario usuario) {
+    public Usuario criarUsuario(Usuario usuario) {
 
         try {
             ps = conexao.prepareStatement("INSERT INTO usuarios (nome, email, senha)" +
@@ -30,9 +31,14 @@ public class UsuarioDao {
             ps.setString(3, usuario.getSenha());
 
             ps.executeUpdate();
+
+            return listarUsuarios().getLast();
+
         } catch (SQLException e) {
             System.out.println("Deu ruim na Query");
         }
+
+        return null;
 
     }
 
@@ -79,5 +85,39 @@ public class UsuarioDao {
         }
 
         return null;
+    }
+
+    public void atualizarUsuario(int id, Usuario usuario) {
+        try {
+            if (Objects.nonNull(getUsuarioById(id))) {
+                ps = conexao.prepareStatement("UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?");
+                ps.setString(1, usuario.getNome());
+                ps.setString(2, usuario.getEmail());
+                ps.setString(3, usuario.getSenha());
+                ps.setInt(4, id);
+
+                ps.executeUpdate();
+
+            } else {
+                System.out.println("O usuário do id = " + id + " não existe");
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Erro na query: " + e.getMessage());
+
+        }
+    }
+
+    public void deletarUsuario(int id) {
+        try {
+            ps = conexao.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Problems na query: " + e.getMessage());
+        }
     }
 }
