@@ -57,4 +57,27 @@ public class UsuarioDao {
 
         return usuarios;
     }
+
+    public Usuario getUsuarioById(int id) {
+        try {
+            ps = conexao.prepareStatement("SELECT * FROM usuarios WHERE id = ?");
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+            Usuario user = null;
+
+            while (resultSet.next()) {
+                user = new Usuario(resultSet.getInt("id"),
+                        resultSet.getString("nome"),
+                        resultSet.getString("email"),
+                        resultSet.getString("senha"));
+            }
+
+            return user;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 }

@@ -1,0 +1,17 @@
+[33mcommit 641a7fb2ec82beb1a98a93f7d0e2a5a668ae9b88[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: DhavydRM <dhavydromano@gmail.com>
+Date:   Fri Sep 19 20:43:10 2025 -0300
+
+    Criação de classe DAO para a classe Usuário que será responsável por fazer todas as querys no banco de dados
+
+[33mcommit 5d6aeffbff1e659b6e8dd79fe21c7b2c54712960[m
+Author: DhavydRM <dhavydromano@gmail.com>
+Date:   Fri Sep 19 20:42:17 2025 -0300
+
+    Criação de classe usuário
+
+[33mcommit 2e78d1c974675f00aef3de7cec5baa75b8beb6f1[m
+Author: DhavydRM <dhavydromano@gmail.com>
+Date:   Fri Sep 19 20:41:32 2025 -0300
+
+    Criada clase principal e de conexão com a lib externa Mysql connector

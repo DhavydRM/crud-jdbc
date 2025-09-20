@@ -19,9 +19,8 @@ public class ProgramaPrincipal {
         System.out.println(ConexaoMysql.getStatus());
 
         if (Objects.nonNull(conexao)) {
-            usuarioDao.criarUsuario(usuario);
-            usuariosList = usuarioDao.listarUsuarios();
-            System.out.println(usuariosList);
+           Usuario user = usuarioDao.getUsuarioById(1);
+           System.out.println(user);
         }
     }
 }
